@@ -1,0 +1,74 @@
+{
+  "title": "Pancarta de Chabela en pasillos universitarios",
+  "type": "Pancarta",
+  "order": 3,
+  "description": "Análisis jerárquico de los elementos visuales presentes en la pancarta colgante negra con un esqueleto y el texto 'Aquí está tu son Chabela', ubicada en un edificio universitario con varios niveles.",
+  "intro": "A continuación se presenta la estructura jerárquica de los componentes visuales identificados en la imagen, organizada en secciones principales y sus respectivos elementos.",
+  "outro": "Fin del análisis estructural de la imagen.",
+  "frames": [
+    {
+      "title": "1.1 Pancarta principal",
+      "hb": [
+        217,
+        230,
+        715,
+        513
+      ],
+      "text": "Gran pancarta de fondo negro colgada verticalmente entre los niveles del edificio escolar.",
+      "children": [
+        {
+          "title": "Texto superior de la pancarta",
+          "hb": [
+            232,
+            307,
+            187,
+            519
+          ],
+          "text": "Texto grande en color blanco distribuido en tres líneas que dice 'AQUÍ ESTÁ TU SON CHABELA'."
+        },
+        {
+          "title": "Ilustración de esqueleto",
+          "hb": [
+            421,
+            396,
+            442,
+            290
+          ],
+          "text": "Figura de un esqueleto humano en color blanco bailando o posando con una mano levantada y la otra cerca de la cadera."
+        }
+      ]
+    },
+    {
+      "title": "2.1 Entorno arquitectónico superior",
+      "hb": [
+        41,
+        260,
+        203,
+        227
+      ],
+      "text": "Puerta azul con letrero y barandas blancas correspondientes al piso superior del edificio.",
+      "children": [
+        {
+          "title": "Puerta azul y letrero de salón",
+          "hb": [
+            54,
+            260,
+            186,
+            222
+          ],
+          "text": "Puerta doble de color azul con un rótulo superior que indica 'SALÓN 404'."
+        }
+      ]
+    },
+    {
+      "title": "3.0 Estudiantes en el nivel inferior",
+      "hb": [
+        824,
+        0,
+        175,
+        1000
+      ],
+      "text": "Grupo de estudiantes sentados o de pie junto a la baranda en la parte inferior de la estructura."
+    }
+  ]
+}

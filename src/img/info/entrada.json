@@ -1,0 +1,156 @@
+{
+  "title": "Mural del Honorable Comité de Huelga de Todos los Dolores de Ingeniería",
+  "type": "Mural",
+  "order": 1,
+  "description": "Un análisis jerárquico de los elementos visuales presentes en el mural del Honorable Comité de Huelga de Todos los Dolores de la Facultad de Ingeniería.",
+  "intro": "A continuación se presenta la estructura jerárquica de los componentes visuales del mural, organizada en secciones principales y sus respectivos elementos detallados.",
+  "outro": "Fin del análisis estructural del mural.",
+  "frames": [
+    {
+      "title": "1.1 Encabezado del Mural",
+      "hb": [
+        19,
+        14,
+        252,
+        856
+      ],
+      "text": "Sección superior del mural que contiene los títulos institucionales y el nombre de la facultad.",
+      "children": [
+        {
+          "title": "Texto superior principal",
+          "hb": [
+            20,
+            191,
+            57,
+            529
+          ],
+          "text": "Texto en color blanco que dice 'HONORABLE COMITE DE'."
+        },
+        {
+          "title": "Texto secundario",
+          "hb": [
+            100,
+            193,
+            51,
+            555
+          ],
+          "text": "Texto en color blanco que dice 'HUELGA DE TODOS LOS DOLORES'."
+        },
+        {
+          "title": "Texto de Ingeniería",
+          "hb": [
+            164,
+            192,
+            110,
+            646
+          ],
+          "text": "Gran texto central con la palabra 'INGENIERIA' en color blanco y sombreado tricolor."
+        }
+      ]
+    },
+    {
+      "title": "2.1 Retratos Históricos e Ilustraciones Superiores",
+      "hb": [
+        270,
+        137,
+        161,
+        510
+      ],
+      "text": "Grupo de personajes históricos representados a la izquierda y una procesión de capirotes en la parte superior central.",
+      "children": [
+        {
+          "title": "Retrato de Oliverio Castañeda",
+          "hb": [
+            275,
+            137,
+            155,
+            108
+          ],
+          "text": "Ilustración de rostro con gafas y etiqueta con el nombre 'Oliverio Castañeda'."
+        },
+        {
+          "title": "Procesión de capirotes y pancarta USAO",
+          "hb": [
+            291,
+            281,
+            114,
+            269
+          ],
+          "text": "Grupo numeroso de figuras con túnicas y capirotes blancos portando una pancarta con las siglas 'USAO'."
+        },
+        {
+          "title": "Buitre o ave superior",
+          "hb": [
+            297,
+            570,
+            65,
+            68
+          ],
+          "text": "Ilustración de un ave de rapiña con detalles rojos cerca de la puerta."
+        }
+      ]
+    },
+    {
+      "title": "3.1 Figuras Principales e Iconografía Inferior",
+      "hb": [
+        434,
+        137,
+        532,
+        426
+      ],
+      "text": "Sección central-inferior que muestra figuras destacadas, coronas de espinas y símbolos de lucha.",
+      "children": [
+        {
+          "title": "Retrato de Rogelia Cruz",
+          "hb": [
+            398,
+            203,
+            122,
+            89
+          ],
+          "text": "Retrato de perfil de Rogelia Cruz sobre fondo oscuro."
+        },
+        {
+          "title": "Retrato de Alejandro Coti",
+          "hb": [
+            555,
+            134,
+            122,
+            86
+          ],
+          "text": "Ilustración de rostro con gafas y etiqueta con el nombre 'Alejandro Coti'."
+        },
+        {
+          "title": "Figuras centrales encapuchadas",
+          "hb": [
+            439,
+            250,
+            526,
+            248
+          ],
+          "text": "Dos figuras grandes con capirotes, una de tono grisáceo con un pequeño personaje y otra de color negro sosteniendo una espada con una flor roja."
+        },
+        {
+          "title": "Corona de espinas",
+          "hb": [
+            773,
+            138,
+            146,
+            149
+          ],
+          "text": "Corona de espinas de color amarillo situada en la esquina inferior izquierda."
+        }
+      ]
+    },
+    {
+      "title": "4.0 Puerta y Marco del Mural",
+      "hb": [
+        363,
+        560,
+        608,
+        203
+      ],
+      "text": "Estructura de la puerta metálica oscura integrada en el extremo derecho del mural."
+    }
+  ]
+}

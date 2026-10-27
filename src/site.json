@@ -1,0 +1,27 @@
+{
+  "title": "Fototeca",
+  "lead": "Mantas y murales: un recorrido por sus símbolos.",
+  "sections": [
+    {
+      "id": "mision",
+      "title": "Misión",
+      "text": "Escribe aquí la misión del proyecto o del artista."
+    },
+    {
+      "id": "vision",
+      "title": "Visión",
+      "text": "Escribe aquí la visión: hacia dónde va la obra."
+    },
+    {
+      "id": "sobre",
+      "title": "Sobre la obra",
+      "text": "Técnica, materiales, contexto cultural y proceso."
+    },
+    {
+      "id": "contacto",
+      "title": "Contacto",
+      "text": "Correo, redes y datos para comisiones."
+    }
+  ],
+  "footer": "© Tu nombre"
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Manta de mujeres combatientes del Honorable Comité de Huelga",
+  "type": "Manta",
+  "order": 2,
+  "description": "Análisis jerárquico de los elementos visuales y textuales de la manta blanca decorada con huellas de manos de colores, ilustraciones de mujeres y una figura encapuchada, acompañada de un texto poético.",
+  "intro": "A continuación se presenta la estructura jerárquica de los componentes visuales y textuales de la manta, organizada en secciones principales.",
+  "outro": "Fin del análisis estructural de la manta.",
+  "frames": [
+    {
+      "title": "1.1 Sección superior de ilustraciones",
+      "hb": [
+        28,
+        25,
+        335,
+        936
+      ],
+      "text": "Grupo de ilustraciones de mujeres con diferentes blusas de colores y una figura encapuchada sosteniendo un bastón en el extremo derecho.",
+      "children": [
+        {
+          "title": "Grupo de mujeres ilustradas",
+          "hb": [
+            60,
+            161,
+            269,
+            755
+          ],
+          "text": "Conjunto de figuras femeninas pintadas con ropa de diversos colores (rosa, verde, azul, morado, rojo) con los brazos alzados."
+        },
+        {
+          "title": "Figura encapuchada",
+          "hb": [
+            30,
+            712,
+            401,
+            250
+          ],
+          "text": "Figura de túnica gris con capucha y un símbolo morado, portando un bastón largo a la derecha."
+        }
+      ]
+    },
+    {
+      "title": "2.1 Texto poético central",
+      "hb": [
+        391,
+        172,
+        458,
+        831
+      ],
+      "text": "Frase escrita en letras mayúsculas oscuras que ocupa la parte central de la manta.",
+      "children": [
+        {
+          "title": "Poema sobre la libertad",
+          "hb": [
+            391,
+            175,
+            456,
+            825
+          ],
+          "text": "Texto que dice: 'PENSARÉ EN PARTIR DEL INFINITO, EL DÍA QUE UNA MUJER ESCRIBA EN EL CIELO QUE LA PAZ DE SU CORAZÓN ES MÁS GRANDE QUE LA VOLUNTAD DE SUS HIJOS Y ESE DÍA UN NUEVO AMANECER SE VOLCARÁ SOBRE LOS PUEBLOS EN BUSCA DE LA GRANDEZA DE LA PALABRA LLAMADA LIBERTAD'."
+        }
+      ]
+    },
+    {
+      "title": "3.1 Texto inferior institucional y huellas",
+      "hb": [
+        862,
+        11,
+        137,
+        989
+      ],
+      "text": "Línea de texto institucional en la parte inferior y un marco compuesto por huellas de manos de diferentes colores.",
+      "children": [
+        {
+          "title": "Texto inferior",
+          "hb": [
+            956,
+            17,
+            44,
+            983
+          ],
+          "text": "Texto escrito en la franja inferior que menciona 'MUJERES COMBATIVAS DEL HONORABLE COMITÉ DE HUELGA...'."
+        },
+        {
+          "title": "Huellas de manos decorativas",
+          "hb": [
+            37,
+            11,
+            959,
+            977
+          ],
+          "text": "Múltiples huellas de manos de colores (morado, rojo, verde, azul, amarillo) distribuidas a lo largo de los bordes y el fondo de la manta."
+        }
+      ]
+    }
+  ]
+}
