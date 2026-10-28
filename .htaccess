@@ -1,0 +1,12 @@
+# Apache (colócalo en la raíz del sitio). Equivale a server.js: 404 + regreso al index.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# 1) Solo existen index.html, 404.html y /src/: cualquier otra ruta -> 404
+RewriteRule ^(?!$|index\.html$|404\.html$|src/) - [R=404,L]
+# 2) Abrir a mano (barra de direcciones) cualquier cosa dentro de /src/ -> 404. La página sí puede pedir sus recursos.
+RewriteCond %{HTTP:Sec-Fetch-Dest} ^(document|iframe|frame|embed|object)$ [NC]
+RewriteRule ^src/ - [R=404,L]
+</IfModule>

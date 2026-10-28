@@ -1,0 +1,24 @@
+{
+  "title": "Fototeca",
+  "sections": [
+    {
+      "id": "sobre",
+      "title": "Sobre la obra",
+      "text": "Técnica, materiales, contexto cultural y proceso."
+    }
+  ],
+  "instagram": "_grisynegro_",
+  "year": "2026",
+  "phrases": [
+    "Gris y Negro por Excelencia",
+    "Mientras haya pueblo, habrá revolución",
+    "A mí me gusta tu Click, Doris",
+    "La lucha de ayer sigue siendo la memoria de hoy",
+    {
+      "text": "🩶🖤",
+      "hold": 5500
+    },
+    "Pasillos, paredes y murales que guardan la historia que jamás van a callar",
+    "La patria necesita tu coraje y valor"
+  ]
+}

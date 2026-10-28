@@ -1,0 +1,8 @@
+{
+  "name": "fototeca",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "manifest": "node build-manifest.js"
+  }
+}
