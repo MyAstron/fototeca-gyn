@@ -2,12 +2,19 @@
 const $=s=>document.querySelector(s),esc=App.esc,imgSrc=App.imgSrc,tsrc=e=>e.thumb?App.thumbSrc(e.thumb):App.imgSrc(e.f);   /* miniatura si existe, si no la original */
 /* ===== Mosaico: pinta las obras que entrega App.api.obras() ===== */
 function error(){$("#grid").innerHTML='<p class="mono">No se pudieron cargar las obras. Abre la página con “node server.js” (o ejecuta “node build-manifest.js” si usas hosting estático).</p>'}
+/* Abre una obra: la miniatura "respira", se precarga la foto y el visor entra haciendo zoom desde esa miniatura */
+function openWork(e,el){
+  if(el.classList.contains("opening"))return;
+  el.classList.add("opening");
+  const r=el.getBoundingClientRect(),from={x:r.left+r.width/2,y:r.top+r.height/2};
+  Promise.all([App.api.viewer(),App.preload(App.imgSrc(e.f))]).then(()=>App.openViewer(e,false,from)).catch(()=>{}).then(()=>setTimeout(()=>el.classList.remove("opening"),500));
+}
 function render(entries){
   entries.sort((a,b)=>(a.info.order??999)-(b.info.order??999));
   entries.forEach(e=>{
     const b=document.createElement("button");b.className="tile";b.dataset.type=e.info.type||"";
     b.innerHTML=`<img loading="lazy" src="${tsrc(e)}" alt="${esc(e.info.description||e.info.title||e.base)}"><div class="cap"><div class="row"><h3>${esc(e.info.title||e.base)}</h3><span class="mono">${esc([e.info.type,e.info.year].filter(Boolean).join(" · "))}</span></div><p>${esc(e.info.description||"")}</p></div>`;
-    b.onclick=()=>App.api.viewer().then(()=>App.openViewer(e));$("#grid").appendChild(b);
+    b.onclick=()=>openWork(e,b);$("#grid").appendChild(b);
   });
   /* Línea de tiempo: las mismas obras agrupadas por año */
   const tl=$("#timeline"),tItems=[],byYear={};
@@ -17,7 +24,7 @@ function render(entries){
     sec.innerHTML=`<h3 class="tyear">${y==="—"?"Sin fecha":esc(y)}</h3><div class="tlist"></div>`;
     byYear[y].forEach(i=>{const e=entries[i],b=document.createElement("button");b.className="titem";b.dataset.type=e.info.type||"";
       b.innerHTML=`<img loading="lazy" src="${tsrc(e)}" alt="${esc(e.info.description||e.info.title||e.base)}"><div><span class="mono">${esc(e.info.type||"")}</span><h4>${esc(e.info.title||e.base)}</h4><p>${esc(e.info.description||"")}</p></div>`;
-      b.onclick=()=>App.api.viewer().then(()=>App.openViewer(e));sec.querySelector(".tlist").appendChild(b);tItems[i]=b});
+      b.onclick=()=>openWork(e,b);sec.querySelector(".tlist").appendChild(b);tItems[i]=b});
     tl.appendChild(sec)});
   $("#views").addEventListener("click",ev=>{const b=ev.target.closest(".vw");if(!b)return;
     ev.currentTarget.querySelectorAll(".vw").forEach(x=>x.classList.toggle("on",x===b));$("#grid").hidden=b.dataset.v!=="grid";tl.hidden=b.dataset.v!=="time"});

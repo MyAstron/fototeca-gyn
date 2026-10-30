@@ -41,7 +41,7 @@ function layout(){const h=V.clientHeight;V.style.setProperty("--vh",h+"px");if(S
 function ficha(i){const r=[["Año",i.year],["Medidas",i.measures],["Estado actual",i.status],["Tipo",i.type]].filter(x=>x[1]);
   return r.length?`<dl class="ficha">${r.map(x=>`<div><dt>${x[0]}</dt><dd>${esc(x[1])}</dd></div>`).join("")}</dl>`:""}
 function tagsHtml(s){return s.tags&&s.tags.length?`<div class="tags">${s.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>`:""}
-function openViewer(e,fromUrl){
+function openViewer(e,fromUrl,from){
   const steps=buildSteps(e.info),N=steps.length-1;
   S={steps,N,e,free:false,playing:false,active:-1,jump:null,view:{fx:50,fy:50,s:1,op:0,r:[0,0,100,100]},
     TOPS:steps.map((s,i)=>i).filter(i=>!steps[i].parent),
@@ -53,6 +53,10 @@ function openViewer(e,fromUrl){
   cards.innerHTML="";hbs.innerHTML="";
   art.alt=e.info.description||e.info.title||e.base;art.src=imgSrc(e.f);
   document.body.style.overflow="hidden";V.hidden=false;V.scrollTop=0;
+  clearTimeout(V._t);V.classList.remove("leave","enter");   /* entrada: zoom ligero + desenfoque en los lados */
+  if(from){V.style.setProperty("--ox",from.x+"px");V.style.setProperty("--oy",from.y+"px")}else{V.style.removeProperty("--ox");V.style.removeProperty("--oy")}
+  void V.offsetWidth;V.classList.add("enter");V._t=setTimeout(()=>V.classList.remove("enter"),1100);
+  if(App.autoplay.get())setTimeout(()=>{if(S&&S.e===e&&!S.playing&&!S.free)startPlay()},1000);   /* autoplay global */
   V.classList.remove("free");V.style.overflowY="";playB.textContent="▶ Reproducir";
   if(!fromUrl){try{history.pushState({v:1},"","?obra="+encodeURIComponent(e.base))}catch(_){}}
   steps.forEach((s,i)=>{
@@ -69,11 +73,12 @@ function openViewer(e,fromUrl){
   layout();render();
 }
 function closeViewer(fromPop){
-  stopPlay();ptr.clear();V.classList.remove("free");V.style.overflowY="";V.hidden=true;S=null;document.body.style.overflow="";
+  stopPlay(false);ptr.clear();V.classList.remove("free");V.style.overflowY="";S=null;document.body.style.overflow="";
+  clearTimeout(V._t);V.classList.remove("enter");V.classList.add("leave");V._t=setTimeout(()=>{V.hidden=true;V.classList.remove("leave")},320);   /* salida suave */
   if(!fromPop){try{if(history.state&&history.state.v)history.back();else history.replaceState(null,"",location.pathname)}catch(_){}}
 }
 function goTo(i,auto){
-  if(!auto)stopPlay();if(S.free)setFree(false);   /* salto directo: el scroll se coloca de golpe y la cámara viaja sin pasar por los demás */
+  if(!auto)stopPlay();if(S.free)setFree(false,true);   /* salto directo: el scroll se coloca de golpe y la cámara viaja sin pasar por los demás */
   S.jump={...S.view,t0:performance.now(),dur:900};
   V.scrollTo({top:i*STEP_VH*V.clientHeight+2,behavior:"instant"});render();
 }
@@ -105,17 +110,31 @@ function render(){
   hint.style.opacity=y>40?0:1;
 }
 /* ===== Reproducir: avanza solo entre padres e hijos; más texto = más tiempo en cada paso ===== */
-const playB=$("#play"),shareB=$("#share"),pbar=$("#pbar");
-function stopPlay(){if(!S||!S.playing)return;S.playing=false;clearTimeout(S.timer);playB.textContent="▶ Reproducir";pbar.style.transition="none";pbar.style.width="0"}
+const playB=$("#play"),shareB=$("#share"),pbar=$("#pbar"),autopB=$("#autop");
+function stopPlay(msg){   /* msg: texto del aviso; false = sin aviso */
+  if(!S||!S.playing)return;
+  S.playing=false;clearTimeout(S.timer);playB.textContent="▶ Reproducir";
+  pbar.style.transition="opacity .4s";pbar.style.opacity="0";clearTimeout(pbar._t);   /* la barra se desvanece */
+  pbar._t=setTimeout(()=>{pbar.style.transition="none";pbar.style.width="0";pbar.style.opacity="1"},450);
+  if(msg!==false)App.toast(msg||"❚❚ Reproductor en pausa");
+}
+function startPlay(){
+  if(!S||S.playing)return;if(S.free)setFree(false);
+  S.playing=true;playB.textContent="❚❚ Pausa";App.toast("▶ Reproductor activo");playStep();
+}
 function playStep(){
   if(!S||!S.playing)return;
-  const i=S.active;if(i>=S.N){stopPlay();return}
+  const i=S.active;if(i>=S.N){stopPlay("Fin del recorrido");return}
   const words=(S.steps[i].b||"").split(/\s+/).filter(Boolean).length,ms=1000+Math.min(8000,Math.max(2200,words*250));
+  clearTimeout(pbar._t);pbar.style.opacity="1";
   pbar.style.transition="none";pbar.style.width="0";void pbar.offsetWidth;pbar.style.transition="width "+ms+"ms linear";pbar.style.width="100%";   /* barra de progreso del paso */
   S.timer=setTimeout(()=>{if(!S||!S.playing)return;goTo(i+1,true);playStep()},ms);
 }
-playB.onclick=()=>{if(!S)return;if(S.playing){stopPlay();return}if(S.free)setFree(false);S.playing=true;playB.textContent="❚❚ Pausa";playStep()};
+playB.onclick=()=>{if(!S)return;S.playing?stopPlay():startPlay()};
 ["wheel","touchstart","pointerdown"].forEach(t=>V.addEventListener(t,e=>{if(S&&S.playing&&!playB.contains(e.target))stopPlay()},{passive:true}));
+/* Autoplay global (se activa en el encabezado o aquí) */
+const syncAutop=()=>{const on=App.autoplay.get();autopB.textContent="Autoplay: "+(on?"sí":"no");autopB.classList.toggle("on",on)};
+autopB.onclick=()=>App.autoplay.set(!App.autoplay.get());App.autoplay.sub(syncAutop);syncAutop();
 
 /* ===== Zoom libre: se activa solo cuando el usuario intenta hacer zoom sobre la imagen =====
    (pellizco con dos dedos, Ctrl + rueda / pellizco del trackpad, doble clic o la tecla +).
@@ -131,11 +150,16 @@ function zoomAt(cx,cy,k){
   F.x=px-(px-F.x)*ns/F.s;F.y=py-(py-F.y)*ns/F.s;F.s=ns;applyFree();
   if(k<1&&F.s<=1.001)setFree(false);   /* al alejar del todo, vuelve al recorrido guiado */
 }
-function setFree(on){
+function setFree(on,instant){
   if(!S||S.free===on)return;
   if(on){stopPlay();const t=S.tf||{s:1,x:0,y:0};F.s=t.s;F.x=t.x;F.y=t.y}   /* parte de la vista guiada actual */
   S.free=on;V.classList.toggle("free",on);V.style.overflowY=on?"hidden":"";
-  if(on)applyFree();else render();
+  if(on){applyFree();return}
+  if(instant){   /* lo usa goTo: el salto parte desde donde está la vista libre */
+    const W=frame.clientWidth,H=frame.clientHeight;S.view={...S.view,fx:(W/2-F.x)/(W*F.s)*100,fy:(H/2-F.y)/(H*F.s)*100,s:F.s,op:0};return;
+  }
+  zoom.style.transition="transform .75s cubic-bezier(.2,.75,.2,1)";sel.style.transition="opacity .6s ease .15s,box-shadow .6s";   /* vuelta suave al recorrido guiado */
+  render();clearTimeout(S.ft);S.ft=setTimeout(()=>{zoom.style.transition="";sel.style.transition=""},950);
 }
 exitB.onclick=()=>setFree(false);
 const mid=k=>{const r=frame.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,k)};

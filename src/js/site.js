@@ -5,7 +5,7 @@ function renderSite(s){
   $("#brand").textContent=s.title||"Fototeca";
   const sec=s.sections||[];
   $("#nav").innerHTML=sec.map(x=>`<a href="#${esc(x.id)}">${esc(x.title)}</a>`).join("")+(s.instagram?`<a href="#contacto">Contacto</a>`:"");
-  const ig=s.instagram?`<a class="ig" href="https://instagram.com/${esc(s.instagram)}" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".7" fill="currentColor" stroke="none"/></svg><span class="mono">@${esc(s.instagram)}</span></a>`:"";
+  const ig=s.instagram?`<a class="ig" href="https://instagram.com/${esc(s.instagram)}" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".7" fill="currentColor" stroke="none"/></svg><span class="mono">${esc(s.instagram)}</span></a>`:"";
   $("#info").innerHTML=sec.map(x=>`<section class="sec" id="${esc(x.id)}"><div class="mono">${esc(x.title)}</div><p>${esc(x.text)}</p></section>`).join("")+`<footer class="foot" id="contacto"><span class="mono">© ${esc(s.year||new Date().getFullYear())}</span>${ig}</footer>`;
   startTyping(s.phrases||[]);
 }
@@ -41,5 +41,19 @@ $("#theme").onclick=toggleTheme;
     if(e.key==="/"&&!(App.viewerOpen&&App.viewerOpen())&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();$("#q").focus()}
   });
 }
-App.site={render:renderSite,init:initSite};
+/* Autoplay global: si está activo, cada obra que se abre empieza a reproducirse sola */
+let ap=false;try{ap=localStorage.getItem("autoplay")==="1"}catch(_){}
+const subs=[];
+App.autoplay={
+  get:()=>ap,
+  sub:fn=>subs.push(fn),
+  set(v){ap=!!v;try{localStorage.setItem("autoplay",ap?"1":"0")}catch(_){}subs.forEach(f=>f(ap));
+    App.toast(ap?"▶ Autoplay activado · las obras se reproducen solas":"❚❚ Autoplay desactivado")}
+};
+function initAutoplay(){
+  const b=$("#autoplay"),sync=()=>{b.classList.toggle("on",ap);b.setAttribute("aria-pressed",ap)};
+  sync();App.autoplay.sub(sync);b.onclick=()=>App.autoplay.set(!ap);
+  if(ap)setTimeout(()=>App.toast("▶ Reproductor activo · las obras se reproducen solas"),700);   /* aviso al abrir la fototeca */
+}
+App.site={render:renderSite,init(){initSite();initAutoplay()}};
 })();
