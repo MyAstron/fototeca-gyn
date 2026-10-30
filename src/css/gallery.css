@@ -28,3 +28,19 @@
 .ig:hover{color:var(--acc)}
 .ig .mono{color:inherit}
 @media (max-width:700px){.sec{grid-template-columns:1fr;gap:8px}}
+
+/* línea de tiempo */
+.views{display:flex;border:1px solid var(--line)}
+.vw{font:11px "Space Mono",monospace;text-transform:uppercase;letter-spacing:.06em;background:none;color:var(--mute);border:0;padding:7px 12px;cursor:pointer}
+.vw.on{background:var(--fg);color:var(--bg)}
+.timeline{padding:0 5vw 40px;max-width:1100px}
+.ty{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
+.tyear{margin:0;font-size:clamp(28px,4vw,44px);font-weight:600;line-height:1;position:sticky;top:78px;align-self:start}
+.tlist{display:flex;flex-direction:column;gap:22px}
+.titem{display:grid;grid-template-columns:160px 1fr;gap:18px;text-align:left;background:none;border:0;padding:0;cursor:pointer;color:inherit}
+.titem img{width:100%;height:auto;max-height:200px;object-fit:cover;border:1px solid var(--line)}
+.titem h4{margin:4px 0;font-size:19px;font-weight:600}
+.titem p{margin:0;font-size:14px;line-height:1.45;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.titem:hover h4{color:var(--acc)}
+.titem[hidden],.ty[hidden]{display:none}
+@media (max-width:700px){.ty{grid-template-columns:1fr;gap:10px}.tyear{position:static}.titem{grid-template-columns:110px 1fr}}

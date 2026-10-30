@@ -2,7 +2,6 @@
 const $=s=>document.querySelector(s),esc=App.esc,imgSrc=App.imgSrc;
 /* ===== Sitio: encabezado fijo + secciones al final (src/site.json) ===== */
 function renderSite(s){
-  document.title=s.title||"Fototeca";
   $("#brand").textContent=s.title||"Fototeca";
   const sec=s.sections||[];
   $("#nav").innerHTML=sec.map(x=>`<a href="#${esc(x.id)}">${esc(x.title)}</a>`).join("")+(s.instagram?`<a href="#contacto">Contacto</a>`:"");

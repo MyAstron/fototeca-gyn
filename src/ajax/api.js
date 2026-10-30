@@ -12,9 +12,9 @@
     site:()=>orFallback(()=>H.json("ajax/site"),()=>H.json("src/data/site.json")),
     /* lista de obras: [{f, base, info}] */
     obras:()=>orFallback(
-      ()=>H.json("ajax/obras").then(r=>r.obras.map(o=>({f:o.file,base:o.base,info:o.info||{}}))),
+      ()=>H.json("ajax/obras").then(r=>r.obras.map(o=>({f:o.file,base:o.base,thumb:o.thumb||null,info:o.info||{}}))),
       ()=>Promise.resolve(H.json("src/img/manifest.json")).then(m=>Promise.all(m.images.map(f=>
-        Promise.resolve(H.json("src/img/info/"+baseName(f)+".json")).catch(()=>({})).then(info=>({f,base:baseName(f),info})))))),
+        Promise.resolve(H.json("src/img/info/"+baseName(f)+".json")).catch(()=>({})).then(info=>({f,base:baseName(f),thumb:(m.thumbs||{})[baseName(f)]||null,info})))))),
     /* el visor (HTML + CSS + JS) se descarga solo la primera vez que se abre una obra */
     viewer:()=>vp||(vp=Promise.all([H.html("src/views/viewer.html"),H.css("src/css/viewer.css")])
       .then(r=>{jQuery("#app-viewer").html(r[0]);return H.script("src/js/viewer.js")})

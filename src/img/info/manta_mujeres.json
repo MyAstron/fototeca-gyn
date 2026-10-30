@@ -24,7 +24,11 @@
             269,
             755
           ],
-          "text": "Conjunto de figuras femeninas pintadas con ropa de diversos colores (rosa, verde, azul, morado, rojo) con los brazos alzados."
+          "text": "Conjunto de figuras femeninas pintadas con ropa de diversos colores (rosa, verde, azul, morado, rojo) con los brazos alzados.",
+          "tags": [
+            "mujeres",
+            "puños en alto"
+          ]
         },
         {
           "title": "Figura encapuchada",
@@ -34,8 +38,16 @@
             401,
             250
           ],
-          "text": "Figura de túnica gris con capucha y un símbolo morado, portando un bastón largo a la derecha."
+          "text": "Figura de túnica gris con capucha y un símbolo morado, portando un bastón largo a la derecha.",
+          "tags": [
+            "capirote",
+            "símbolo femenino"
+          ]
         }
+      ],
+      "tags": [
+        "mujeres",
+        "figura encapuchada"
       ]
     },
     {
@@ -56,8 +68,15 @@
             456,
             825
           ],
-          "text": "Texto que dice: 'PENSARÉ EN PARTIR DEL INFINITO, EL DÍA QUE UNA MUJER ESCRIBA EN EL CIELO QUE LA PAZ DE SU CORAZÓN ES MÁS GRANDE QUE LA VOLUNTAD DE SUS HIJOS Y ESE DÍA UN NUEVO AMANECER SE VOLCARÁ SOBRE LOS PUEBLOS EN BUSCA DE LA GRANDEZA DE LA PALABRA LLAMADA LIBERTAD'."
+          "text": "Texto que dice: 'PENSARÉ EN PARTIR DEL INFINITO, EL DÍA QUE UNA MUJER ESCRIBA EN EL CIELO QUE LA PAZ DE SU CORAZÓN ES MÁS GRANDE QUE LA VOLUNTAD DE SUS HIJOS Y ESE DÍA UN NUEVO AMANECER SE VOLCARÁ SOBRE LOS PUEBLOS EN BUSCA DE LA GRANDEZA DE LA PALABRA LLAMADA LIBERTAD'.",
+          "tags": [
+            "poema"
+          ]
         }
+      ],
+      "tags": [
+        "poema",
+        "libertad"
       ]
     },
     {
@@ -78,7 +97,10 @@
             44,
             983
           ],
-          "text": "Texto escrito en la franja inferior que menciona 'MUJERES COMBATIVAS DEL HONORABLE COMITÉ DE HUELGA...'."
+          "text": "Texto escrito en la franja inferior que menciona 'MUJERES COMBATIVAS DEL HONORABLE COMITÉ DE HUELGA...'.",
+          "tags": [
+            "texto"
+          ]
         },
         {
           "title": "Huellas de manos decorativas",
@@ -88,9 +110,19 @@
             959,
             977
           ],
-          "text": "Múltiples huellas de manos de colores (morado, rojo, verde, azul, amarillo) distribuidas a lo largo de los bordes y el fondo de la manta."
+          "text": "Múltiples huellas de manos de colores (morado, rojo, verde, azul, amarillo) distribuidas a lo largo de los bordes y el fondo de la manta.",
+          "tags": [
+            "huellas de manos",
+            "colores"
+          ]
         }
+      ],
+      "tags": [
+        "huellas de manos"
       ]
     }
-  ]
+  ],
+  "year": "2017",
+  "measures": "4.5 × 2.2 m",
+  "status": "En resguardo"
 }

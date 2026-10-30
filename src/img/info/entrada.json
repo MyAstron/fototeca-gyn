@@ -24,7 +24,10 @@
             57,
             529
           ],
-          "text": "Texto en color blanco que dice 'HONORABLE COMITE DE'."
+          "text": "Texto en color blanco que dice 'HONORABLE COMITE DE'.",
+          "tags": [
+            "texto"
+          ]
         },
         {
           "title": "Texto secundario",
@@ -34,7 +37,10 @@
             51,
             555
           ],
-          "text": "Texto en color blanco que dice 'HUELGA DE TODOS LOS DOLORES'."
+          "text": "Texto en color blanco que dice 'HUELGA DE TODOS LOS DOLORES'.",
+          "tags": [
+            "texto"
+          ]
         },
         {
           "title": "Texto de Ingeniería",
@@ -44,8 +50,16 @@
             110,
             646
           ],
-          "text": "Gran texto central con la palabra 'INGENIERIA' en color blanco y sombreado tricolor."
+          "text": "Gran texto central con la palabra 'INGENIERIA' en color blanco y sombreado tricolor.",
+          "tags": [
+            "texto",
+            "tricolor"
+          ]
         }
+      ],
+      "tags": [
+        "tipografía",
+        "institucional"
       ]
     },
     {
@@ -66,7 +80,11 @@
             155,
             108
           ],
-          "text": "Ilustración de rostro con gafas y etiqueta con el nombre 'Oliverio Castañeda'."
+          "text": "Ilustración de rostro con gafas y etiqueta con el nombre 'Oliverio Castañeda'.",
+          "tags": [
+            "retrato",
+            "memoria"
+          ]
         },
         {
           "title": "Procesión de capirotes y pancarta USAO",
@@ -76,7 +94,11 @@
             114,
             269
           ],
-          "text": "Grupo numeroso de figuras con túnicas y capirotes blancos portando una pancarta con las siglas 'USAO'."
+          "text": "Grupo numeroso de figuras con túnicas y capirotes blancos portando una pancarta con las siglas 'USAO'.",
+          "tags": [
+            "capirotes",
+            "USAO"
+          ]
         },
         {
           "title": "Buitre o ave superior",
@@ -86,8 +108,15 @@
             65,
             68
           ],
-          "text": "Ilustración de un ave de rapiña con detalles rojos cerca de la puerta."
+          "text": "Ilustración de un ave de rapiña con detalles rojos cerca de la puerta.",
+          "tags": [
+            "ave"
+          ]
         }
+      ],
+      "tags": [
+        "memoria",
+        "figuras históricas"
       ]
     },
     {
@@ -108,7 +137,11 @@
             122,
             89
           ],
-          "text": "Retrato de perfil de Rogelia Cruz sobre fondo oscuro."
+          "text": "Retrato de perfil de Rogelia Cruz sobre fondo oscuro.",
+          "tags": [
+            "retrato",
+            "mujer"
+          ]
         },
         {
           "title": "Retrato de Alejandro Coti",
@@ -118,7 +151,10 @@
             122,
             86
           ],
-          "text": "Ilustración de rostro con gafas y etiqueta con el nombre 'Alejandro Coti'."
+          "text": "Ilustración de rostro con gafas y etiqueta con el nombre 'Alejandro Coti'.",
+          "tags": [
+            "retrato"
+          ]
         },
         {
           "title": "Figuras centrales encapuchadas",
@@ -128,7 +164,12 @@
             526,
             248
           ],
-          "text": "Dos figuras grandes con capirotes, una de tono grisáceo con un pequeño personaje y otra de color negro sosteniendo una espada con una flor roja."
+          "text": "Dos figuras grandes con capirotes, una de tono grisáceo con un pequeño personaje y otra de color negro sosteniendo una espada con una flor roja.",
+          "tags": [
+            "capirotes",
+            "espada",
+            "flor roja"
+          ]
         },
         {
           "title": "Corona de espinas",
@@ -138,8 +179,15 @@
             146,
             149
           ],
-          "text": "Corona de espinas de color amarillo situada en la esquina inferior izquierda."
+          "text": "Corona de espinas de color amarillo situada en la esquina inferior izquierda.",
+          "tags": [
+            "corona de espinas"
+          ]
         }
+      ],
+      "tags": [
+        "homenaje",
+        "resistencia"
       ]
     },
     {
@@ -150,7 +198,13 @@
         608,
         203
       ],
-      "text": "Estructura de la puerta metálica oscura integrada en el extremo derecho del mural."
+      "text": "Estructura de la puerta metálica oscura integrada en el extremo derecho del mural.",
+      "tags": [
+        "puerta"
+      ]
     }
-  ]
+  ],
+  "year": "2012",
+  "measures": "3.2 × 2.4 m",
+  "status": "Conservado"
 }

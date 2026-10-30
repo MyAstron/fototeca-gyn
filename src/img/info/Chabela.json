@@ -24,7 +24,10 @@
             187,
             519
           ],
-          "text": "Texto grande en color blanco distribuido en tres líneas que dice 'AQUÍ ESTÁ TU SON CHABELA'."
+          "text": "Texto grande en color blanco distribuido en tres líneas que dice 'AQUÍ ESTÁ TU SON CHABELA'.",
+          "tags": [
+            "texto"
+          ]
         },
         {
           "title": "Ilustración de esqueleto",
@@ -34,8 +37,16 @@
             442,
             290
           ],
-          "text": "Figura de un esqueleto humano en color blanco bailando o posando con una mano levantada y la otra cerca de la cadera."
+          "text": "Figura de un esqueleto humano en color blanco bailando o posando con una mano levantada y la otra cerca de la cadera.",
+          "tags": [
+            "esqueleto",
+            "baile"
+          ]
         }
+      ],
+      "tags": [
+        "esqueleto",
+        "pancarta"
       ]
     },
     {
@@ -56,8 +67,15 @@
             186,
             222
           ],
-          "text": "Puerta doble de color azul con un rótulo superior que indica 'SALÓN 404'."
+          "text": "Puerta doble de color azul con un rótulo superior que indica 'SALÓN 404'.",
+          "tags": [
+            "puerta",
+            "salón 404"
+          ]
         }
+      ],
+      "tags": [
+        "edificio"
       ]
     },
     {
@@ -68,7 +86,13 @@
         175,
         1000
       ],
-      "text": "Grupo de estudiantes sentados o de pie junto a la baranda en la parte inferior de la estructura."
+      "text": "Grupo de estudiantes sentados o de pie junto a la baranda en la parte inferior de la estructura.",
+      "tags": [
+        "estudiantes"
+      ]
     }
-  ]
+  ],
+  "year": "2023",
+  "measures": "2.0 × 5.5 m",
+  "status": "Retirada, guardada en bodega"
 }

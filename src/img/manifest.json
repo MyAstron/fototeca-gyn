@@ -3,5 +3,9 @@
     "Chabela.jpg",
     "entrada.png",
     "manta_mujeres.jpg"
-  ]
+  ],
+  "thumbs": {
+    "Chabela": "Chabela.svg",
+    "entrada": "entrada.svg"
+  }
 }

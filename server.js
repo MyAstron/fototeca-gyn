@@ -11,11 +11,12 @@ const NAV=["document","iframe","frame","embed","object"];   // valores de Sec-Fe
 // Endpoints AJAX: solo responden a peticiones AJAX; si alguien los escribe en la barra de direcciones -> 404 -> index
 const readJSON=f=>{try{return JSON.parse(fs.readFileSync(f,"utf8"))}catch(e){return null}};
 const IMG=/\.(jpe?g|png|webp|gif|avif|svg)$/i;
+const thumbOf=base=>{try{return fs.readdirSync(path.join(SRC,"img","thumbs")).find(f=>f.replace(/\.[^.]+$/,"")===base&&IMG.test(f))||null}catch(e){return null}};
 const AJAX={
   site:()=>readJSON(path.join(SRC,"data","site.json")),
   obras:()=>({obras:fs.readdirSync(path.join(SRC,"img")).filter(f=>IMG.test(f)).sort().map(file=>{
     const base=file.replace(/\.[^.]+$/,"");
-    return {file,base,info:readJSON(path.join(SRC,"img","info",base+".json"))||{}};
+    return {file,base,thumb:thumbOf(base),info:readJSON(path.join(SRC,"img","info",base+".json"))||{}};
   })})
 };
 function notFound(res,asPage){
@@ -29,7 +30,8 @@ http.createServer((req,res)=>{
   const isNav=dest?NAV.includes(dest):(!xhr&&/text\/html/.test(req.headers.accept||""));
   if(p==="/"||p==="/index.html"){
     res.writeHead(200,{"Content-Type":MIME[".html"],"Cache-Control":"no-cache"});
-    return fs.createReadStream(path.join(ROOT,"index.html")).pipe(res);
+    const origin=(req.headers["x-forwarded-proto"]||"http")+"://"+req.headers.host;   // og:image y og:url absolutas
+    return res.end(fs.readFileSync(path.join(ROOT,"index.html"),"utf8").split("{{ORIGIN}}").join(origin));
   }
   if(isNav)return notFound(res,true);                                  // la escribieron a mano -> 404 -> index
   if(p.startsWith("/ajax/")){

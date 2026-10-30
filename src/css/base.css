@@ -1,7 +1,7 @@
 /* Base: variables de tema, encabezado fijo y animación de frases */
-:root{--bg:#f4efe6;--fg:#1d1a16;--mute:#6b6459;--acc:#c4471d;--card:#fffaf0;--line:rgba(0,0,0,.18);box-sizing:border-box}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--fg:#f1ece2;--mute:#a59d90;--acc:#f2c14e;--card:#262422;--line:rgba(255,255,255,.2)}}
-:root[data-theme="dark"]{--bg:#1c1b1a;--fg:#f1ece2;--mute:#a59d90;--acc:#f2c14e;--card:#262422;--line:rgba(255,255,255,.2)}
+:root{--bg:#f4efe6;--fg:#1d1a16;--mute:#6b6459;--acc:#c4471d;--card:#fffaf0;--line:rgba(0,0,0,.18);--lg-bg:#e9e3d6;--lg-br:#8a8379;--lg-l:#8c8c8c;--lg-r:#1d1a16;box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1b1a;--fg:#f1ece2;--mute:#a59d90;--acc:#f2c14e;--card:#262422;--line:rgba(255,255,255,.2);--lg-bg:#111;--lg-br:#777;--lg-l:#a3a3a3;--lg-r:#4d4d4d}}
+:root[data-theme="dark"]{--bg:#1c1b1a;--fg:#f1ece2;--mute:#a59d90;--acc:#f2c14e;--card:#262422;--line:rgba(255,255,255,.2);--lg-bg:#111;--lg-br:#777;--lg-l:#a3a3a3;--lg-r:#4d4d4d}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:"Fraunces",Georgia,serif}
@@ -9,7 +9,9 @@ button{font:inherit;color:inherit}
 .mono,#nav a{font:11px "Space Mono",ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 /* encabezado fijo */
 .top{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(12px + env(safe-area-inset-top,0px)) 5vw 12px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.brand{font-weight:600;font-size:20px;color:var(--fg);text-decoration:none;white-space:nowrap}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:20px;color:var(--fg);text-decoration:none;white-space:nowrap}
+.logo{width:32px;height:32px;display:block}
+.lg-bg{fill:var(--lg-bg)}.lg-br{fill:none;stroke:var(--lg-br);stroke-width:2.5;stroke-linejoin:round}.lg-l{fill:var(--lg-l)}.lg-r{fill:var(--lg-r)}
 #nav{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
 .theme{background:none;border:1px solid var(--line);padding:5px 9px;cursor:pointer;white-space:nowrap}
 .theme:hover{color:var(--fg);border-color:var(--acc)}
