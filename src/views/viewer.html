@@ -1,6 +1,13 @@
 <div class="viewer" id="viewer" hidden>
   <div class="veil" aria-hidden="true"></div>
-  <button class="vbtn" id="close">← Fototeca</button>
+  <div class="vtop">
+    <button class="vbtn" id="close">← Fototeca</button>
+    <button class="vbtn" id="autotop" title="Reproducir solo" aria-pressed="false">▶ Autoplay</button>
+    <div class="vfmt" id="vfmt" hidden role="group" aria-label="Formato de imagen">
+      <button class="vbtn" id="btn-orig" title="Ver fotografía original">Foto</button>
+      <button class="vbtn on" id="btn-svg" title="Ver versión vectorial SVG">SVG</button>
+    </div>
+  </div>
   <button class="vbtn" id="freeexit">⟲ Volver al recorrido</button>
   <div id="track"><div class="stage">
     <div class="wrap"><div class="frame" id="frame"><div class="zoom" id="zoom">
@@ -10,7 +17,7 @@
     </div></div></div>
     <div class="side"><div class="cards" id="cards"></div>
       <div class="nav"><button id="prev">← Anterior</button><button id="home">Inicio</button><button id="next">Siguiente →</button></div>
-      <div class="nav nav2"><button id="play">▶ Reproducir</button><button id="autop">Autoplay: no</button><button id="share">Compartir</button></div>
+      <div class="nav nav2"><button id="play">▶ Reproducir</button><button id="share">Compartir</button></div>
       <div class="pbar" id="pbar"></div></div>
   </div></div>
   <div class="hint" id="hint" aria-hidden="true"><div class="mouse"><i></i></div><div class="chev"><b></b><b></b></div></div>

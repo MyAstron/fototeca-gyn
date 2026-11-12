@@ -1,6 +1,8 @@
 {
   "title": "Fototeca",
-  "sections": [
+  "_comentario_secciones": "Sección 'Sobre la obra' comentada para rellenar más tarde",
+  "sections": [],
+  "_sections_draft": [
     {
       "id": "sobre",
       "title": "Sobre la obra",

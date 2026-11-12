@@ -17,7 +17,11 @@
         Promise.resolve(H.json("src/img/info/"+baseName(f)+".json")).catch(()=>({})).then(info=>({f,base:baseName(f),thumb:(m.thumbs||{})[baseName(f)]||null,info})))))),
     /* el visor (HTML + CSS + JS) se descarga solo la primera vez que se abre una obra */
     viewer:()=>vp||(vp=Promise.all([H.html("src/views/viewer.html"),H.css("src/css/viewer.css")])
-      .then(r=>{jQuery("#app-viewer").html(r[0]);return H.script("src/js/viewer.js")})
+      .then(r=>{
+        const el=document.getElementById("app-viewer");
+        if(el)el.innerHTML=r[0];
+        return H.script("src/js/viewer.js");
+      })
       .catch(e=>{vp=null;throw e}))
   };
 })();

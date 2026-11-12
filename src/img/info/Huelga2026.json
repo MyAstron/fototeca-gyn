@@ -1,0 +1,190 @@
+{
+  "title": "Mural del Honorable Comité de Huelga de Todos los Dolores de la Facultad de Ingeniería 2026",
+  "type": "Mural",
+  "order": 1,
+  "year": "2026",
+  "measures": "Mural estudiantil",
+  "status": "Exhibido en Facultad de Ingeniería",
+  "hbFormat": "xywh",
+  "description": "Análisis jerárquico de los elementos visuales presentes en el mural pintado del Honorable Comité de Huelga de Todos los Dolores de la Facultad de Ingeniería 2026.",
+  "intro": "A continuación se presenta la descomposición estructurada de los elementos visuales y personajes representados en la manta/mural satírica estudiantil.",
+  "outro": "Fin del desglose jerárquico de la obra.",
+  "frames": [
+    {
+      "title": "1.1 Encabezado y Texto Superior",
+      "hb": [1, 2, 97, 19],
+      "text": "Frase institucional pintada en la parte superior que identifica a la organización y el año del evento.",
+      "tags": ["encabezado", "texto", "ingeniería", "2026"],
+      "children": [
+        {
+          "title": "Texto del comité",
+          "hb": [2, 3, 94, 18],
+          "text": "Texto en mayúsculas de color blanco que reza: 'HONORABLE COMITÉ DE HUELGA DE TODOS LOS DOLORES FACULTAD DE INGENIERÍA 2026'.",
+          "tags": ["texto", "lema"]
+        }
+      ]
+    },
+    {
+      "title": "2.1 Sección Superior Izquierda y Símbolos de Precios",
+      "hb": [2, 23, 17, 30],
+      "text": "Elementos gráficos y tabla de precios o combustibles situados en el extremo superior izquierdo.",
+      "tags": ["precios", "combustibles"],
+      "children": [
+        {
+          "title": "Tabla o rótulo de precios",
+          "hb": [32, 29, 14, 23],
+          "text": "Cartel que muestra clasificaciones como 'Super Cacos', 'Regular', 'Diesel' y 'Power'.",
+          "tags": ["tabla", "sátira"]
+        }
+      ]
+    },
+    {
+      "title": "3.1 Personaje Político Superior Izquierdo",
+      "hb": [16, 21, 27, 24],
+      "text": "Figura caricaturesca de un personaje con anteojos, bigote y corbata de moño roja sentado tras un estrado.",
+      "tags": ["política", "caricatura"],
+      "children": [
+        {
+          "title": "Rostro y corbata de moño",
+          "hb": [19, 21, 14, 16],
+          "text": "Detalle de la cabeza del personaje con gafas, cabello gris y bigote, acompañado de una corbata de moño roja.",
+          "tags": ["rostro", "personaje"]
+        }
+      ]
+    },
+    {
+      "title": "4.1 Documento 'Presupuesto Copypaste 2025'",
+      "hb": [40, 23, 18, 19],
+      "text": "Pergamino o documento con sellos oficiales y texto crítico sobre el presupuesto.",
+      "tags": ["presupuesto", "minfin"],
+      "children": [
+        {
+          "title": "Sello y título del documento",
+          "hb": [44, 25, 12, 16],
+          "text": "Texto visible que dice 'MINFIN' en un sello rojo y 'PRESUPUESTO COPYPASTE 2025'.",
+          "tags": ["sello", "documento"]
+        }
+      ]
+    },
+    {
+      "title": "5.1 Cáliz o Trofeo Dorado",
+      "hb": [56, 24, 11, 19],
+      "text": "Objeto dorado con inscripciones en la parte superior.",
+      "tags": ["cáliz", "trofeo"],
+      "children": [
+        {
+          "title": "Inscripción en el cáliz",
+          "hb": [58, 25, 7, 7],
+          "text": "Texto grabado sobre la copa que dice 'LIMOSNA'.",
+          "tags": ["limosna", "inscripción"]
+        }
+      ]
+    },
+    {
+      "title": "6.1 La Parca o Figura Esquelética",
+      "hb": [60, 20, 39, 44],
+      "text": "Figura de la muerte con túnica negra y capucha gris, sosteniendo una rosa roja con una calavera pequeña en el extremo derecho superior.",
+      "tags": ["la parca", "muerte", "calavera"],
+      "children": [
+        {
+          "title": "Cráneo de la parca",
+          "hb": [71, 23, 14, 16],
+          "text": "Rostro esquelético detallado con cuencas oculares oscuras y una sonrisa fija.",
+          "tags": ["cráneo", "esqueleto"]
+        }
+      ]
+    },
+    {
+      "title": "7.0 Tanque militar y antena",
+      "hb": [3, 49, 16, 21],
+      "text": "Representación gráfica de un vehículo blindado de combate con una torre de comunicación al lado.",
+      "tags": ["tanque", "militar"]
+    },
+    {
+      "title": "8.1 Manifestantes y Simbolismo Central",
+      "hb": [20, 41, 15, 23],
+      "text": "Grupo de figuras pequeñas marchando o protestando con camisas rojas y pancartas.",
+      "tags": ["manifestantes", "protesta"],
+      "children": [
+        {
+          "title": "Símbolos de dinero y pancartas",
+          "hb": [24, 43, 8, 9],
+          "text": "Símbolos de dólares y pancartas portadas por los manifestantes.",
+          "tags": ["pancartas", "dólares"]
+        }
+      ]
+    },
+    {
+      "title": "9.1 Cartel de Florecio",
+      "hb": [42, 43, 18, 12],
+      "text": "Señalización circular verde con mensajes alusivos.",
+      "tags": ["cartel", "sátira"],
+      "children": [
+        {
+          "title": "Texto del cartel verde",
+          "hb": [44, 45, 14, 8],
+          "text": "Texto manuscrito que dice '...ya no Florecio!'.",
+          "tags": ["texto", "lema"]
+        }
+      ]
+    },
+    {
+      "title": "10.1 Personaje Central Atormentado (Monstruo con Virus/Bomba)",
+      "hb": [38, 51, 31, 28],
+      "text": "Figura central de aspecto grotesco rodeada de elementos de peligro biológico y explosivos.",
+      "tags": ["monstruo", "pandemia", "bomba"],
+      "children": [
+        {
+          "title": "Rostro expresivo central",
+          "hb": [46, 56, 15, 16],
+          "text": "Cara con ojos saltones, boca abierta con colmillos y expresión de terror o caos.",
+          "tags": ["rostro", "expresión"]
+        }
+      ]
+    },
+    {
+      "title": "11.0 Personajes de la Huelga (Derecha)",
+      "hb": [66, 60, 20, 26],
+      "text": "Figuras vestidas de negro con capuchas y antifaces característicos de la tradicional Huelga de Dolores.",
+      "tags": ["huelga", "encapuchados"]
+    },
+    {
+      "title": "12.0 Personaje anciano sentado en sillón",
+      "hb": [68, 64, 21, 26],
+      "text": "Figura de la tercera edad con suéter verde y pañuelo morado en la cabeza, sentada en un sillón clásico de madera.",
+      "tags": ["personaje", "sillón"]
+    },
+    {
+      "title": "13.0 Rústicos y Rinocerontes o figuras de animales inferiores",
+      "hb": [76, 75, 20, 23],
+      "text": "Personajes caricaturizados con rasgos de animales y ratas en la parte inferior derecha.",
+      "tags": ["animales", "ratas", "caricatura"]
+    },
+    {
+      "title": "14.1 Personaje con corbata inferior y papeles de meses",
+      "hb": [36, 73, 21, 24],
+      "text": "Figura situada en el área inferior central junto a un bloque de calendarios o expedientes.",
+      "tags": ["calendario", "expedientes"],
+      "children": [
+        {
+          "title": "Páginas del calendario",
+          "hb": [38, 77, 16, 17],
+          "text": "Hojas apiladas con nombres de meses legibles como 'Enero', 'Abril', etc.",
+          "tags": ["meses", "hojas"]
+        }
+      ]
+    },
+    {
+      "title": "15.0 Personaje inferior izquierdo asomado",
+      "hb": [9, 79, 17, 19],
+      "text": "Figura con anteojos y camisa verde asomándose desde el margen inferior izquierdo.",
+      "tags": ["personaje"]
+    },
+    {
+      "title": "16.0 Reloj de arena",
+      "hb": [26, 70, 14, 22],
+      "text": "Reloj de arena antiguo colocado sobre una mesa de madera.",
+      "tags": ["reloj de arena", "tiempo"]
+    }
+  ]
+}

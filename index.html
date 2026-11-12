@@ -7,6 +7,8 @@
 <meta name="description" content="Mantas, murales y pancartas que guardan en gris y negro la memoria y la lucha del pueblo.">
 <meta name="author" content="Doris">
 <meta name="theme-color" content="#1c1b1a">
+<!-- Soporte opcional de CDN para GitHub Pages (ej. https://cdn.jsdelivr.net/gh/usuario/repo@rama/) -->
+<meta name="cdn-url" content="">
 <link rel="icon" href="src/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="src/icons/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="src/icons/apple-touch-icon.png">
@@ -26,23 +28,53 @@
 <meta name="twitter:title" content=".: Gris y Negro - Fototeca:.">
 <meta name="twitter:description" content="Mantas, murales y pancartas que guardan en gris y negro la memoria y la lucha del pueblo.">
 <meta name="twitter:image" content="{{ORIGIN}}/src/icons/share.png">
+
+<!-- Carga optimizada y no bloqueante de fuentes externas -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Space+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Space+Mono&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Space+Mono&display=swap">
+</noscript>
+
+<!-- Estilos base y de galería -->
 <link rel="stylesheet" href="src/css/base.css">
 <link rel="stylesheet" href="src/css/gallery.css">
 </head>
 <body>
 <div id="app-header"></div>
-<main id="app-main"></main>
+<main id="app-main">
+  <!-- Skeletons inmediatos de carga para despliegue instantáneo sin layout shift (CLS) -->
+  <section class="hero"><h1 id="type" aria-label="Fototeca"><span class="live">Fototeca</span></h1></section>
+  <div class="grid" id="grid">
+    <div class="skeleton-tile" aria-hidden="true"><div class="skeleton-shimmer skeleton-img sk-h1"></div><div class="cap"><div class="skeleton-shimmer skeleton-line sk-title"></div><div class="skeleton-shimmer skeleton-line sk-sub"></div></div></div>
+    <div class="skeleton-tile" aria-hidden="true"><div class="skeleton-shimmer skeleton-img sk-h2"></div><div class="cap"><div class="skeleton-shimmer skeleton-line sk-title"></div><div class="skeleton-shimmer skeleton-line sk-sub"></div></div></div>
+    <div class="skeleton-tile" aria-hidden="true"><div class="skeleton-shimmer skeleton-img sk-h3"></div><div class="cap"><div class="skeleton-shimmer skeleton-line sk-title"></div><div class="skeleton-shimmer skeleton-line sk-sub"></div></div></div>
+    <div class="skeleton-tile" aria-hidden="true"><div class="skeleton-shimmer skeleton-img sk-h2"></div><div class="cap"><div class="skeleton-shimmer skeleton-line sk-title"></div><div class="skeleton-shimmer skeleton-line sk-sub"></div></div></div>
+    <div class="skeleton-tile" aria-hidden="true"><div class="skeleton-shimmer skeleton-img sk-h1"></div><div class="cap"><div class="skeleton-shimmer skeleton-line sk-title"></div><div class="skeleton-shimmer skeleton-line sk-sub"></div></div></div>
+    <div class="skeleton-tile" aria-hidden="true"><div class="skeleton-shimmer skeleton-img sk-h3"></div><div class="cap"><div class="skeleton-shimmer skeleton-line sk-title"></div><div class="skeleton-shimmer skeleton-line sk-sub"></div></div></div>
+  </div>
+</main>
 <div id="app-viewer"></div>
 <noscript><p style="padding:90px 5vw">Esta página necesita JavaScript.</p></noscript>
 <!--EMBED-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="src/js/core.js"></script>
-<script src="src/ajax/http.js"></script>
-<script src="src/ajax/api.js"></script>
-<script src="src/js/site.js"></script>
-<script src="src/js/gallery.js"></script>
-<script src="src/js/main.js"></script>
+<!-- Scripts de terceros cargados de forma diferida (después de pintar la página) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Núcleo de la aplicación: carga modular diferida (las páginas se dividen por módulo bajo demanda) -->
+<script defer src="src/js/core.js"></script>
+<script defer src="src/ajax/http.js"></script>
+<script defer src="src/ajax/api.js"></script>
+<script defer src="src/js/main.js"></script>
+
+<!-- Registro no bloqueante del Service Worker para caché offline y aceleración en móviles -->
+<script>
+  if("serviceWorker" in navigator){
+    window.addEventListener("load",function(){
+      navigator.serviceWorker.register("./sw.js").catch(function(){});
+    });
+  }
+</script>
 </body>
 </html>

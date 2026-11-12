@@ -1,11 +1,13 @@
 {
   "images": [
     "Chabela.jpg",
+    "Huelga2026.jpg",
     "entrada.png",
     "manta_mujeres.jpg"
   ],
   "thumbs": {
     "Chabela": "Chabela.svg",
+    "Huelga2026": "Huelga2026.svg",
     "entrada": "entrada.svg"
   }
 }

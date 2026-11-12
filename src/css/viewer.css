@@ -75,7 +75,7 @@
 .nav2{margin-top:0.875rem}
 .pbar{height:2px;width:0;background:var(--acc);margin-top:0.75rem;max-width:44ch}
 #freeexit{left:50%;transform:translateX(-50%);display:none}.free #freeexit{display:block}
-.frame{touch-action:pan-y}
+.frame{touch-action:pan-y pinch-zoom}
 .free .pin{opacity:0!important}
 .free .hbs{display:none}
 .nav2 #autop.on{color:var(--acc);border-color:var(--acc)}
@@ -98,3 +98,12 @@
 @keyframes veilOut{from{opacity:1}to{opacity:0}}
 @keyframes veilIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.viewer.enter,.viewer.enter .stage,.viewer.enter .veil,.viewer.leave,.viewer.leave .stage,.viewer.leave .veil{animation:none}}
+
+/* botón Autoplay junto a la flecha de regreso y selector de formato */
+.vtop{position:fixed;top:calc(0.625rem + env(safe-area-inset-top,0px));left:0.75rem;z-index:40;display:flex;gap:0.5rem;align-items:center}
+.vtop .vbtn{position:static}
+.vbtn.on{color:var(--acc);border-color:var(--acc)}
+.vfmt{display:inline-flex;gap:0.35rem;border-left:1px solid var(--line);padding-left:0.5rem;align-items:center}
+.vfmt[hidden]{display:none}
+@media (max-width:640px){#freeexit{left:auto;right:0.75rem;transform:none}}
+@media (max-width:540px){.vtop{flex-wrap:wrap;max-width:calc(100vw - 1.5rem)}}
