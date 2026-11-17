@@ -1,6 +1,6 @@
 /* Visor (se descarga por AJAX al abrir la primera obra) */
 /* visor */
-.viewer{position:fixed;inset:0;z-index:30;overflow-y:auto;background:var(--bg);scrollbar-width:none}
+.viewer{position:fixed;inset:0;z-index:30;overflow-y:auto;background:var(--bg);scrollbar-width:none;overscroll-behavior:contain}
 .viewer::-webkit-scrollbar{display:none}
 .viewer[hidden]{display:none}
 .vbtn{position:fixed;top:calc(0.625rem + env(safe-area-inset-top,0px));left:0.75rem;z-index:40;font:0.6875rem "Space Mono",monospace;text-transform:uppercase;background:var(--card);border:1px solid var(--line);padding:0.4375rem 0.625rem;cursor:pointer}
@@ -107,3 +107,66 @@
 .vfmt[hidden]{display:none}
 @media (max-width:640px){#freeexit{left:auto;right:0.75rem;transform:none}}
 @media (max-width:540px){.vtop{flex-wrap:wrap;max-width:calc(100vw - 1.5rem)}}
+
+/* View Transitions API (Modern Web Guidance: same-document-transitions)
+   Morfología suave de la obra activa entre el mosaico y el visor */
+::view-transition-old(active-artwork),
+::view-transition-new(active-artwork) {
+  animation-duration: 0.38s;
+  animation-timing-function: cubic-bezier(0.2, 0.75, 0.2, 1);
+  height: 100%;
+  object-fit: contain;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Ficha Técnica Imprimible / Exportación Cultural (Modern Web Guidance) */
+@media print {
+  #app-header, .top, .vtop, #freeexit, .nav, .pbar, .hint, .theme, .fmt-toggle, .hbs, .pin {
+    display: none !important;
+  }
+  body, .viewer {
+    background: #fff !important;
+    color: #111 !important;
+    position: static !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .stage {
+    display: block !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .wrap, .frame {
+    display: block !important;
+    border: none !important;
+    max-width: 100% !important;
+    margin: 0 auto 1.5rem !important;
+    page-break-inside: avoid;
+  }
+  .frame img {
+    max-height: 48vh !important;
+    width: auto !important;
+    margin: 0 auto;
+  }
+  .side, .cards, .card {
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    display: block !important;
+    page-break-inside: avoid;
+  }
+  .ficha {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-top: 1.25rem;
+    gap: 0.75rem 1.5rem;
+  }
+}

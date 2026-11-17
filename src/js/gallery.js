@@ -4,9 +4,9 @@ const $=s=>document.querySelector(s),esc=App.esc,imgSrc=App.imgSrc;
 /* Obtiene la ruta de imagen activa (SVG o raster original) */
 function activeSrcOf(e){
   const hasSvg=Boolean(e.thumb&&/\.svg$/i.test(e.thumb));
-  if(e.activeFmt==="orig")return App.imgSrc(e.f);
+  if(e.activeFmt==="orig")return App.imgSrc(e.f,e);
   if(e.activeFmt==="svg"&&hasSvg)return App.thumbSrc(e.thumb);
-  return e.thumb?App.thumbSrc(e.thumb):App.imgSrc(e.f);
+  return e.thumb?App.thumbSrc(e.thumb):App.imgSrc(e.f,e);
 }
 
 /* ===== Mosaico: pinta las obras que entrega App.api.obras() ===== */
@@ -22,7 +22,7 @@ function openWork(e,el){
   const r=el.getBoundingClientRect(),from={x:r.left+r.width/2,y:r.top+r.height/2};
   const targetSrc=activeSrcOf(e);
   Promise.all([App.api.viewer(),App.preload(targetSrc)])
-    .then(()=>App.openViewer(e,false,from))
+    .then(()=>App.openViewer(e,false,from,el))
     .catch(()=>{})
     .then(()=>setTimeout(()=>el.classList.remove("opening"),500));
 }
@@ -33,7 +33,7 @@ function render(entries){
   if(!grid)return;
 
   // Remueve skeletons de carga e inserta en un solo reflow con DocumentFragment
-  grid.innerHTML="";
+  grid.replaceChildren();
   const fragGrid=document.createDocumentFragment();
   const tiles=[];
 
@@ -45,11 +45,12 @@ function render(entries){
     const b=document.createElement("button");
     b.className="tile";
     b.dataset.type=e.info.type||"";
+    b.dataset.base=e.base||"";
     b._entry=e;
 
-    // Las primeras 3 imágenes son prioritarias (LCP). El resto usan lazy loading y baja prioridad
-    const isLcp=idx<3;
-    const loadAttrs=isLcp?'fetchpriority="high"':'loading="lazy" fetchpriority="low"';
+    // Las primeras 2 imágenes son candidatas a LCP (fetchpriority="high"). El resto usan lazy loading estándar
+    const isLcp=idx<2;
+    const loadAttrs=isLcp?'fetchpriority="high"':'loading="lazy"';
     const currentSrc=activeSrcOf(e);
 
     const toggleHtml=hasSvg?`
@@ -78,7 +79,7 @@ function render(entries){
   /* Línea de tiempo: las mismas obras agrupadas por año */
   const tl=$("#timeline"),tItems=[],byYear={};
   if(tl){
-    tl.innerHTML="";
+    tl.replaceChildren();
     const fragTl=document.createDocumentFragment();
     entries.forEach((e,i)=>{const y=e.info.year||"—";(byYear[y]=byYear[y]||[]).push(i)});
     Object.keys(byYear).sort((a,b)=>a==="—"?1:b==="—"?-1:a-b).forEach(y=>{
@@ -95,7 +96,7 @@ function render(entries){
             <span class="fmt-btn ${e.activeFmt==='svg'?'on':''}" data-fmt="svg" title="Ver versión vectorial SVG">SVG</span>
           </div>`:``;
 
-        b.innerHTML=`<div class="tile-media"><img loading="lazy" decoding="async" fetchpriority="low" src="${currentSrc}" alt="${esc(e.info.description||e.info.title||e.base)}">${toggleHtml}</div><div><span class="mono">${esc(e.info.type||"")}</span><h4>${esc(e.info.title||e.base)}</h4><p>${esc(e.info.description||"")}</p></div>`;
+        b.innerHTML=`<div class="tile-media"><img loading="lazy" decoding="async" src="${currentSrc}" alt="${esc(e.info.description||e.info.title||e.base)}">${toggleHtml}</div><div><span class="mono">${esc(e.info.type||"")}</span><h4>${esc(e.info.title||e.base)}</h4><p>${esc(e.info.description||"")}</p></div>`;
         b.onclick=()=>openWork(e,b);
 
         if(e.hasSvg){
@@ -172,7 +173,52 @@ function render(entries){
       });
     }
     if(none&&(none.hidden!==(n>0)))none.hidden=n>0;
+    const countEl=$("#search-count");
+    if(countEl){
+      if(ft||w.length){
+        countEl.textContent=`${n} ${n===1?"obra":"obras"}`;
+        countEl.hidden=false;
+      }else{
+        countEl.textContent=`${entries.length} obras`;
+        countEl.hidden=false;
+      }
+    }
+    updateHighlights(w);
   };
+
+  /* Resaltado dinámico sin alterar el DOM (CSS Custom Highlight API) */
+  function updateHighlights(words){
+    if(typeof CSS==="undefined"||!("highlights" in CSS))return;
+    CSS.highlights.delete("search-match");
+    if(!words.length)return;
+
+    const ranges=[];
+    const walker=document.createTreeWalker(grid,NodeFilter.SHOW_TEXT,null);
+    let node;
+    while((node=walker.nextNode())){
+      const parentTile=node.parentElement?.closest(".tile");
+      if(parentTile&&parentTile.hidden)continue;
+      const text=node.textContent||"";
+      const normText=norm(text);
+      for(const w of words){
+        if(w.length<2)continue;
+        let pos=0;
+        while((pos=normText.indexOf(w,pos))!==-1){
+          try{
+            const r=new Range();
+            r.setStart(node,pos);
+            r.setEnd(node,pos+w.length);
+            ranges.push(r);
+          }catch(_){}
+          pos+=w.length;
+        }
+      }
+    }
+    if(ranges.length){
+      const h=new Highlight(...ranges);
+      CSS.highlights.set("search-match",h);
+    }
+  }
 
   const scheduleApply=()=>{
     if(filterRaf)cancelAnimationFrame(filterRaf);
@@ -187,7 +233,7 @@ function render(entries){
   if(types.length>1){   /* filtros por tipo, con conteo */
     const fl=$("#filters");
     if(fl){
-      fl.innerHTML="";
+      fl.replaceChildren();
       const mk=(label,val,n)=>{
         const b=document.createElement("button");
         b.className="fl"+(val===""?" on":"");
@@ -203,6 +249,7 @@ function render(entries){
       types.forEach(t=>mk(t,t,entries.filter(e=>e.info.type===t).length));
     }
   }
+  apply();
 }
 
 App.gallery={render,error};

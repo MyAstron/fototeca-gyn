@@ -5,6 +5,24 @@
     "entrada.png",
     "manta_mujeres.jpg"
   ],
+  "variants": {
+    "Chabela": {
+      "avif": "Chabela.avif",
+      "webp": "Chabela.webp"
+    },
+    "Huelga2026": {
+      "avif": "Huelga2026.avif",
+      "webp": "Huelga2026.webp"
+    },
+    "entrada": {
+      "avif": "entrada.avif",
+      "webp": "entrada.webp"
+    },
+    "manta_mujeres": {
+      "avif": "manta_mujeres.avif",
+      "webp": "manta_mujeres.webp"
+    }
+  },
   "thumbs": {
     "Chabela": "Chabela.svg",
     "Huelga2026": "Huelga2026.svg",

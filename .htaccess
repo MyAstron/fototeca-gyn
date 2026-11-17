@@ -5,11 +5,20 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-# 1) Solo existen index.html, 404.html, sw.js y /src/: cualquier otra ruta -> 404
-RewriteRule ^(?!$|index\.html$|404\.html$|sw\.js$|src/) - [R=404,L]
+# 1) Solo existen index.html, 404.html, sw.js, manifest.webmanifest y /src/: cualquier otra ruta -> 404
+RewriteRule ^(?!$|index\.html$|404\.html$|sw\.js$|manifest\.webmanifest$|src/) - [R=404,L]
 # 2) Abrir a mano (barra de direcciones) cualquier cosa dentro de /src/ -> 404. La página sí puede pedir sus recursos.
 RewriteCond %{HTTP:Sec-Fetch-Dest} ^(document|iframe|frame|embed|object)$ [NC]
 RewriteRule ^src/ - [R=404,L]
+
+# 3) Negociación de contenido transparente: entrega variantes modernas AVIF / WebP si el cliente las acepta
+RewriteCond %{HTTP_ACCEPT} image/avif [NC]
+RewriteCond %{DOCUMENT_ROOT}/src/img/$1.avif -f
+RewriteRule ^src/img/(.+)\.(jpe?g|png)$ src/img/$1.avif [T=image/avif,L]
+
+RewriteCond %{HTTP_ACCEPT} image/webp [NC]
+RewriteCond %{DOCUMENT_ROOT}/src/img/$1.webp -f
+RewriteRule ^src/img/(.+)\.(jpe?g|png)$ src/img/$1.webp [T=image/webp,L]
 </IfModule>
 
 # Caché en navegador para estáticos
@@ -18,17 +27,20 @@ RewriteRule ^src/ - [R=404,L]
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType application/json "access plus 1 hour"
+  ExpiresByType application/manifest+json "access plus 1 week"
 </IfModule>
 
 <IfModule mod_headers.c>
-  <FilesMatch "\.(jpe?g|png|webp|svg|ico|css|js)$">
+  <FilesMatch "\.(jpe?g|png|webp|avif|svg|ico|css|js)$">
     Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400"
+    Header append Vary "Accept"
   </FilesMatch>
   <FilesMatch "sw\.js$">
     Header set Cache-Control "no-cache"

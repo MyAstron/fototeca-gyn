@@ -28,6 +28,8 @@
 .tile[hidden]{display:none}
 .bar{display:flex;flex-wrap:wrap;gap:0.875rem;align-items:center;justify-content:space-between;padding:0 5vw 1.375rem}
 .filters{display:flex;flex-wrap:wrap;gap:0.5rem}
+.search-count{font:0.6875rem "Space Mono",monospace;color:var(--mute);letter-spacing:0.04em;white-space:nowrap;padding:0 0.25rem}
+.search-count[hidden]{display:none}
 .search{display:flex;align-items:center;gap:0.5rem;margin-left:auto;flex:0 1 16.25rem;min-width:10.625rem;border-bottom:1px solid var(--line);padding:0.25rem 2px}
 .search:focus-within{border-color:var(--acc)}
 .search input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--fg);font:0.875rem "Space Mono",monospace;padding:0.25rem 0}
@@ -99,4 +101,10 @@
 }
 .sk-title{height:1.125rem;width:70%;margin:0.5rem 0 0.35rem}
 .sk-sub{height:0.8125rem;width:40%;margin:0 0 0.25rem}
+
+/* CSS Custom Highlight API (Modern Web Guidance: highlight-text-ranges) */
+::highlight(search-match){
+  background-color: var(--acc);
+  color: var(--bg);
+}
 

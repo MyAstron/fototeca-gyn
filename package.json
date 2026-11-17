@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "manifest": "node build-manifest.js"
+    "images": "node build-images.js",
+    "manifest": "node build-manifest.js",
+    "build": "node build-images.js && node build-manifest.js"
   }
 }

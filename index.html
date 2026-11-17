@@ -4,11 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>.: Gris y Negro - Fototeca:.</title>
+<meta name="color-scheme" content="light dark">
+<script>
+  try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark"){document.querySelector('meta[name="color-scheme"]').content=t;document.documentElement.dataset.theme=t;}}catch(e){}
+</script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="Mantas, murales y pancartas que guardan en gris y negro la memoria y la lucha del pueblo.">
 <meta name="author" content="Doris">
 <meta name="theme-color" content="#1c1b1a">
 <!-- Soporte opcional de CDN para GitHub Pages (ej. https://cdn.jsdelivr.net/gh/usuario/repo@rama/) -->
 <meta name="cdn-url" content="">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="src/icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="src/icons/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="src/icons/apple-touch-icon.png">
@@ -57,10 +63,94 @@
   </div>
 </main>
 <div id="app-viewer"></div>
+
+<!-- Modal nativo para guía de atajos de teclado -->
+<dialog id="dlg-shortcuts" class="sc-dialog" aria-labelledby="sc-title">
+  <div class="sc-head">
+    <h2 id="sc-title">Atajos de teclado</h2>
+    <button type="button" class="theme mono" id="sc-close" title="Cerrar (Esc)">✕</button>
+  </div>
+  <div class="sc-body">
+    <div class="sc-grid">
+      <div class="sc-group">
+        <div class="sc-grp-title mono">En el Visor</div>
+        <div class="sc-row"><kbd>Espacio</kbd><span>Reproducir / Pausar recorrido</span></div>
+        <div class="sc-row"><kbd>S</kbd><span>Copiar enlace al paso actual</span></div>
+        <div class="sc-row"><kbd>F</kbd><span>Alternar modo Zoom libre</span></div>
+        <div class="sc-row"><kbd>V</kbd><span>Alternar foto original / vector SVG</span></div>
+        <div class="sc-row"><kbd>←</kbd> / <kbd>→</kbd><span>Paso anterior / siguiente</span></div>
+        <div class="sc-row"><kbd>+</kbd> / <kbd>-</kbd><span>Acercar / Alejar en zoom libre</span></div>
+        <div class="sc-row"><kbd>Home</kbd><span>Regresar al inicio de la obra</span></div>
+        <div class="sc-row"><kbd>Esc</kbd><span>Cerrar visor o salir de zoom</span></div>
+      </div>
+      <div class="sc-group">
+        <div class="sc-grp-title mono">En la Fototeca</div>
+        <div class="sc-row"><kbd>/</kbd><span>Enfocar barra de búsqueda</span></div>
+        <div class="sc-row"><kbd>Alt</kbd> + <kbd>M</kbd><span>Alternar tema Claro / Oscuro</span></div>
+        <div class="sc-row"><kbd>?</kbd><span>Abrir o cerrar esta guía de atajos</span></div>
+        <div class="sc-row"><kbd>Tab</kbd><span>Navegación accesible</span></div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Modal nativo para Cita Académica y Bibliográfica -->
+<dialog id="dlg-cite" class="sc-dialog" aria-labelledby="cite-title" closedby="any">
+  <div class="sc-head">
+    <h2 id="cite-title">Citar obra histórica</h2>
+    <button type="button" class="theme mono" id="cite-close" title="Cerrar (Esc)">✕</button>
+  </div>
+  <div class="sc-body">
+    <p class="mono cite-intro">Formatos normalizados para investigación, docencia y archivo cultural:</p>
+    <div class="cite-group">
+      <div class="cite-label mono">
+        <span>APA (7.ª edición)</span>
+        <button type="button" class="theme mono cite-copy-btn" data-fmt="apa">Copiar</button>
+      </div>
+      <pre class="cite-text" id="cite-apa"></pre>
+    </div>
+    <div class="cite-group">
+      <div class="cite-label mono">
+        <span>Chicago (17.ª edición)</span>
+        <button type="button" class="theme mono cite-copy-btn" data-fmt="chicago">Copiar</button>
+      </div>
+      <pre class="cite-text" id="cite-chicago"></pre>
+    </div>
+    <div class="cite-group">
+      <div class="cite-label mono">
+        <span>BibTeX</span>
+        <button type="button" class="theme mono cite-copy-btn" data-fmt="bibtex">Copiar</button>
+      </div>
+      <pre class="cite-text" id="cite-bibtex"></pre>
+    </div>
+    <div class="cite-group">
+      <div class="cite-label mono">
+        <span>ISO 690</span>
+        <button type="button" class="theme mono cite-copy-btn" data-fmt="iso">Copiar</button>
+      </div>
+      <pre class="cite-text" id="cite-iso"></pre>
+    </div>
+  </div>
+</dialog>
+
+<!-- Banner sugerencia para primera visita -->
+<aside id="sc-banner" class="sc-banner" hidden role="region" aria-label="Sugerencia de navegación">
+  <div class="sc-banner-content">
+    <span class="sc-banner-icon mono">[*]</span>
+    <div class="sc-banner-text">
+      <strong>Navega con atajos de teclado</strong>
+      <p>Usa tu teclado para reproducir, hacer zoom y recorrer las obras.</p>
+    </div>
+  </div>
+  <div class="sc-banner-actions">
+    <button type="button" id="sc-banner-open" class="sc-btn-open">Revisar atajos</button>
+    <button type="button" id="sc-banner-dismiss" class="sc-btn-dismiss">No volver a mostrar</button>
+  </div>
+</aside>
 <noscript><p style="padding:90px 5vw">Esta página necesita JavaScript.</p></noscript>
 <!--EMBED-->
-<!-- Scripts de terceros cargados de forma diferida (después de pintar la página) -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- Scripts de terceros cargados de forma diferida (con SRI, CORS anónimo y política de referrer segura) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Núcleo de la aplicación: carga modular diferida (las páginas se dividen por módulo bajo demanda) -->
 <script defer src="src/js/core.js"></script>

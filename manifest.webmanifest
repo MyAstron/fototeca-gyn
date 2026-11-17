@@ -1,0 +1,64 @@
+{
+  "id": "./",
+  "name": "Gris y Negro - Fototeca",
+  "short_name": "Fototeca GyN",
+  "description": "Mantas, murales y pancartas que guardan en gris y negro la memoria y la lucha del pueblo.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1c1b1a",
+  "theme_color": "#1c1b1a",
+  "lang": "es",
+  "categories": ["culture", "photo", "education"],
+  "icons": [
+    {
+      "src": "src/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "src/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Huelga 2026",
+      "short_name": "2026",
+      "description": "Mural del Honorable Comité de Huelga de Ingeniería 2026",
+      "url": "./?obra=Huelga2026",
+      "icons": [
+        {
+          "src": "src/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Manta de Mujeres",
+      "short_name": "Mujeres",
+      "description": "Manta de mujeres combatientes del Comité de Huelga",
+      "url": "./?obra=manta_mujeres",
+      "icons": [
+        {
+          "src": "src/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

@@ -10,11 +10,11 @@
     view:name=>Promise.resolve(H.html("src/views/"+name+".html")),
     /* datos del sitio: título, secciones, contacto, frases */
     site:()=>orFallback(()=>H.json("ajax/site"),()=>H.json("src/data/site.json")),
-    /* lista de obras: [{f, base, info}] */
+    /* lista de obras: [{f, base, thumb, variants, info}] */
     obras:()=>orFallback(
-      ()=>H.json("ajax/obras").then(r=>r.obras.map(o=>({f:o.file,base:o.base,thumb:o.thumb||null,info:o.info||{}}))),
+      ()=>H.json("ajax/obras").then(r=>r.obras.map(o=>({f:o.file,base:o.base,thumb:o.thumb||null,variants:o.variants||{},info:o.info||{}}))),
       ()=>Promise.resolve(H.json("src/img/manifest.json")).then(m=>Promise.all(m.images.map(f=>
-        Promise.resolve(H.json("src/img/info/"+baseName(f)+".json")).catch(()=>({})).then(info=>({f,base:baseName(f),thumb:(m.thumbs||{})[baseName(f)]||null,info})))))),
+        Promise.resolve(H.json("src/img/info/"+baseName(f)+".json")).catch(()=>({})).then(info=>({f,base:baseName(f),thumb:(m.thumbs||{})[baseName(f)]||null,variants:(m.variants||{})[baseName(f)]||{},info})))))),
     /* el visor (HTML + CSS + JS) se descarga solo la primera vez que se abre una obra */
     viewer:()=>vp||(vp=Promise.all([H.html("src/views/viewer.html"),H.css("src/css/viewer.css")])
       .then(r=>{

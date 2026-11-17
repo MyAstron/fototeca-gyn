@@ -5,10 +5,11 @@
    - Limpieza automática de versiones anteriores
 */
 
-const CACHE_NAME="fototeca-gyn-v1";
+const CACHE_NAME="fototeca-gyn-v3";
 const PRECACHE_ASSETS=[
   "./",
   "./index.html",
+  "./manifest.webmanifest",
   "./src/css/base.css",
   "./src/css/gallery.css",
   "./src/css/viewer.css",
@@ -25,6 +26,8 @@ const PRECACHE_ASSETS=[
   "./src/icons/favicon.svg",
   "./src/icons/favicon.ico",
   "./src/icons/apple-touch-icon.png",
+  "./src/icons/icon-192.png",
+  "./src/icons/icon-512.png",
   "./src/icons/share.png",
   "./src/data/site.json",
   "./src/img/manifest.json"

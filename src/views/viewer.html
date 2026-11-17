@@ -1,14 +1,16 @@
-<div class="viewer" id="viewer" hidden>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Visor de obra" hidden tabindex="-1">
+  <div id="v-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
   <div class="veil" aria-hidden="true"></div>
   <div class="vtop">
-    <button class="vbtn" id="close">← Fototeca</button>
-    <button class="vbtn" id="autotop" title="Reproducir solo" aria-pressed="false">▶ Autoplay</button>
+    <button class="vbtn" id="close" title="Cerrar visor (Esc)">← Fototeca</button>
+    <button class="vbtn" id="autotop" title="Reproducir solo" aria-pressed="false">Autoplay</button>
     <div class="vfmt" id="vfmt" hidden role="group" aria-label="Formato de imagen">
-      <button class="vbtn" id="btn-orig" title="Ver fotografía original">Foto</button>
-      <button class="vbtn on" id="btn-svg" title="Ver versión vectorial SVG">SVG</button>
+      <button class="vbtn" id="btn-orig" title="Ver fotografía original (V)">Foto</button>
+      <button class="vbtn on" id="btn-svg" title="Ver versión vectorial SVG (V)">SVG</button>
+      <button class="vbtn" id="btn-dl-svg" title="Descargar archivo SVG vectorial limpio">Descargar SVG</button>
     </div>
   </div>
-  <button class="vbtn" id="freeexit">⟲ Volver al recorrido</button>
+  <button class="vbtn" id="freeexit" title="Volver al recorrido (F o Esc)">Volver al recorrido</button>
   <div id="track"><div class="stage">
     <div class="wrap"><div class="frame" id="frame"><div class="zoom" id="zoom">
       <img id="art" alt="">
@@ -16,8 +18,8 @@
       <div class="pin" id="sel"><span class="tag" id="tag"></span><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i></div>
     </div></div></div>
     <div class="side"><div class="cards" id="cards"></div>
-      <div class="nav"><button id="prev">← Anterior</button><button id="home">Inicio</button><button id="next">Siguiente →</button></div>
-      <div class="nav nav2"><button id="play">▶ Reproducir</button><button id="share">Compartir</button></div>
+      <div class="nav"><button id="prev" title="Paso anterior (←)">← Anterior</button><button id="home" title="Inicio (Home)">Inicio</button><button id="next" title="Paso siguiente (→)">Siguiente →</button></div>
+      <div class="nav nav2"><button id="play" title="Reproducir / Pausar (Espacio)">Reproducir</button><button id="share" title="Compartir enlace al paso actual (S)">Copiar enlace</button><button id="export-ficha" title="Captura de pantalla de la obra en alta resolución">Ficha</button><button id="btn-cite" title="Generar cita académica (APA, Chicago, BibTeX)">Citar</button><button id="btn-dl-json" title="Descargar ficha de catalogación en formato JSON">JSON</button></div>
       <div class="pbar" id="pbar"></div></div>
   </div></div>
   <div class="hint" id="hint" aria-hidden="true"><div class="mouse"><i></i></div><div class="chev"><b></b><b></b></div></div>
